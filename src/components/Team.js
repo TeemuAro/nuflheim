@@ -655,8 +655,8 @@ class Team extends Component {
           </Modal.Body>
         </Modal>
 
-      <button onClick={() => this.loadTeam()}>Load team</button>
-      <button onClick={() => this.saveTeam()}>Save team</button>
+      <Button onClick={() => this.loadTeam()} className="load">Load team</Button>
+      <Button onClick={() => this.saveTeam()} className="save">Save team</Button>
       </Container>
     );
   }
