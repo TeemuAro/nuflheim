@@ -70,6 +70,24 @@ class Team extends Component {
     selectedPlayerNumber: null,
   }
 
+  loadTeam = () => {
+    let state = JSON.parse(window.localStorage.getItem("state"));
+    let rosterName = state.roster.name;
+    this.setState(state);
+    Array.from(document.querySelector("#roster").options).forEach(function(option_element) {
+      let option_text = option_element.text;
+      let option_value = option_element.value;
+      if (option_text === rosterName) {
+        document.getElementById("roster").value = option_value;
+      }
+    });
+  }
+
+  saveTeam = () => {
+    let state = JSON.stringify(this.state);
+    window.localStorage.setItem("state", state);
+  }
+
   setRoster = (rosterIndex) => {
     // Select a team roster
     this.setState({
@@ -342,7 +360,7 @@ class Team extends Component {
                     <tr>
                       <td>Roster:</td>
                       <td>
-                        <Form.Control as="select" size="sm" onChange={(e) => this.setRoster(e.target.value)}>
+                        <Form.Control id="roster" as="select" size="sm" onChange={(e) => this.setRoster(e.target.value)}>
                          {rosters.map((roster, i) => {return <option key={i} value={i}>{roster.name}</option>;})}
                         </Form.Control>
                       </td>
@@ -637,6 +655,8 @@ class Team extends Component {
           </Modal.Body>
         </Modal>
 
+      <button onClick={() => this.loadTeam()}>Load team</button>
+      <button onClick={() => this.saveTeam()}>Save team</button>
       </Container>
     );
   }

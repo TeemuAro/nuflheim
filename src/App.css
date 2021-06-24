@@ -202,3 +202,14 @@ footer .row .col {
   padding: 50px;
   font-size: .9rem;
 }
+
+button {
+  padding: 20px;
+  margin-right: 25px;
+  border-radius: 50px;
+  border: 0;
+}
+
+button:hover {
+  background-color: whitesmoke;
+}
